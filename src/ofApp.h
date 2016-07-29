@@ -32,6 +32,7 @@ public:
     void playButtonPressed();
     void deviceValueChanged(bool & value);
     
+    bool screenInit;
     bool captureMode;
     DistortionImage projector;
     ofVideoPlayer video;

@@ -85,7 +85,7 @@ void ofApp::setup(){
 	title += "Dome Projector V2\n";
 	sprintf(titleStr, "%s", title.c_str());
     string credit;
-    credit += "programmed by Kazushi Mukaiyama, deformation data by Paul Bourke, 2014-2015\n";
+    credit += "programmed by Kazushi Mukaiyama, deformation data by Paul Bourke, 2014-2016\n";
     sprintf(creditStr, "%s", credit.c_str());
 	string menu;
 	menu += "+press SPACE to play/stop a video\n";
@@ -112,10 +112,21 @@ void ofApp::setup(){
 
     alpha = 0;
     fadeStep = -12.0;
+    
+    screenInit = true;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    if(screenInit){
+        int w=0, h=0;
+        w = ofGetScreenWidth();
+        h = ofGetScreenHeight();
+        ofSetWindowShape(w+PROJECTOR_WIDTH, PROJECTOR_HEIGHT);
+        screenInit = false;
+        return;
+    }
+    
     projector.edit = editArea;
     
     // check playlist of video
