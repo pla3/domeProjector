@@ -1,6 +1,5 @@
 //
 //  DistortionImage.cpp
-//  drawingCanvas
 //
 //  Created by 迎山 和司 on 11/09/16.
 //  Copyright 2011 Future University-Hakodate. All rights reserved.

@@ -1,3 +1,9 @@
+//
+//  ofApp.h for domeProjector
+//
+//  Created by Kazushi Mukaiyama on 16/12/03.
+//  Copyright 2016 Future University Hakodate. All rights reserved.
+//
 #pragma once
 
 #include "ofMain.h"

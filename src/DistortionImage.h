@@ -1,6 +1,5 @@
 //
 //  DistortionImage.h
-//  drawingCanvas
 //
 //  Created by Kazushi Mukaiyama on 13/10/12.
 //  Copyright 2011 Future University Hakodate. All rights reserved.

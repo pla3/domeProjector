@@ -1,3 +1,9 @@
+//
+//  ofApp.cpp for domeProjector
+//
+//  Created by Kazushi Mukaiyama on 16/12/03.
+//  Copyright 2016 Future University Hakodate. All rights reserved.
+//
 #include "ofApp.h"
 
 //--------------------------------------------------------------
@@ -8,8 +14,8 @@ void ofApp::setup(){
     ofBackground(0, 0, 0);
     ofShowCursor();
 
-    font.load("hiragino_w3.otf", 9);
-    fontBold.load("hiragino_w6.otf", 12);
+    font.load("Roboto-Medium.ttf", 9);
+    fontBold.load("Roboto-Bold.ttf", 12);
 
     loadButton.addListener(this, &ofApp::loadButtonPressed);
     saveButton.addListener(this, &ofApp::saveButtonPressed);
@@ -21,7 +27,7 @@ void ofApp::setup(){
     }
 
     moniterPanel.setup("moniter");
-    moniterPanel.loadFont("hiragino_w3.otf", 12);
+    moniterPanel.loadFont("Roboto-Medium.ttf", 12);
     moniterPanel.setPosition(10, 600);
     moniterPanel.add(editArea.setup("edit area", true));
     moniterPanel.add(loadButton.setup("load"));
@@ -29,7 +35,7 @@ void ofApp::setup(){
     moniterPanel.add(resetButton.setup("reset"));
 
 	controlPanel.setup("video control");
-    controlPanel.loadFont("hiragino_w3.otf", 12);
+    controlPanel.loadFont("Roboto-Medium.ttf", 12);
     controlPanel.setPosition(290, 600);
     controlPanel.add(playButton.setup("play/stop"));
 	controlPanel.add(duration.setup("duration", 0.0, 0.0, 1.0));
@@ -39,7 +45,7 @@ void ofApp::setup(){
 
     captureMode = false;
     deviceList.setup("device list");
-    deviceList.loadFont("hiragino_w3.otf", 12);
+    deviceList.loadFont("Roboto-Medium.ttf", 12);
     deviceList.setPosition(570, 600);
     deviceList.clear();
     vector<ofVideoDevice> devices = capture.listDevices();
