@@ -3,7 +3,7 @@ domeProjector is an openFrameworks program to project a dome-master movie on a p
 Some files in data directory are not for public domain. So please carefully to use this source code.
 This is for educational use only.
 
-How to use:
+How to use:<br>
 1 connect a projector(FullHD 1920x1080) to your computer
 2 change extended screen on your desktop and set the projector screen on the top-right.
 3 (edit area and so on if you need to adjust the dome image)
@@ -11,7 +11,7 @@ How to use:
 5 press return key to add mov files in playlist
 6 press space key or click 'play/stop' then every movies in playlist start.
 
-other copyrighted files:
+other copyrighted files:<br>
 - standard_16x9.data:
 This file is a deformation data of dome-master movies with fish-eye lens or helf-spherical mirror, made by Paul Bourke;  http://paulbourke.net/
 
