@@ -5,7 +5,7 @@
 //========================================================================
 int main( ){
     ofGLFWWindowSettings settings;
-    settings.windowMode = OF_FULLSCREEN;
+	settings.windowMode = OF_FULLSCREEN;
     settings.multiMonitorFullScreen = true;
     
     ofCreateWindow(settings);

@@ -29,7 +29,7 @@ void ofApp::setup(){
     moniterPanel.setup("moniter");
     moniterPanel.loadFont("Roboto-Medium.ttf", 12);
     moniterPanel.setPosition(10, 600);
-    moniterPanel.add(editArea.setup("edit area", true));
+    moniterPanel.add(editArea.setup("edit area", false));
     moniterPanel.add(loadButton.setup("load"));
     moniterPanel.add(saveButton.setup("save"));
     moniterPanel.add(resetButton.setup("reset"));
@@ -70,8 +70,8 @@ void ofApp::setup(){
     projector.clear(0, 0, 0, 255);
     projector.mode = DistortionImage::PROJ;
 
-    //video.load("universal_beauty_jp.mov");
-    //video.setLoopState(OF_LOOP_NONE);
+    video.load("planetarium_autumn.mov");
+    video.setLoopState(OF_LOOP_NONE);
     video.stop();
     image.allocate(video.getWidth(), video.getHeight());
     mask.allocate(projector.width, projector.height, OF_IMAGE_COLOR_ALPHA);
@@ -79,6 +79,7 @@ void ofApp::setup(){
 
     path = ofFilePath::getUserHomeDir();
     directory.allowExt("mov");
+	directory.allowExt("mp4");
     directory.allowExt("");
 	directory.listDir(path);
 	directory.sort();
@@ -436,7 +437,7 @@ void ofApp::keyPressed(int key){
                             } else {
                                 ofLogVerbose("The file exists - now checking the type via file extension");
                                 string fileExtension = ofToUpper(file.getExtension());
-                                if (fileExtension == "MOV") {
+                                if (fileExtension == "MOV" || fileExtension == "MP4") {
                                     captureMode = false;
                                     projector.clear(255,255,255,255);
                                     playList.push_back(file);
@@ -446,7 +447,7 @@ void ofApp::keyPressed(int key){
                                     image.allocate(video.getWidth(), video.getHeight());
                                     duration = video.getPosition();
                                 } else {
-                                    ofLogVerbose("This selected file is not mov file!");
+                                    ofLogVerbose("This selected file is not movie file!");
                                 }
                             }
                         }
