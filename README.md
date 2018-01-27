@@ -6,9 +6,9 @@ This is for educational use only.
 How to use:<br>
 - 1. connect a projector(FullHD 1920x1080) to your computer
 - 2. change extended screen on your desktop and set the projector screen on the top-right.
-- 3. (edit area and so on if you need to adjust the dome image)
-- 4. click 'edit area' then select mov files using allow keys.
-- 5. press return key to add mov files in playlist
+- 3. (click 'edit area' if you need to adjust the dome image)
+- 4. select mov or mp4 files using allow keys.
+- 5. press return key to add mov or mp4 files in playlist
 - 6. press space key or click 'play/stop' then every movies in playlist start.
 
 other copyrighted files:<br>
