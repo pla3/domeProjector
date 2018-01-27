@@ -92,7 +92,7 @@ void ofApp::setup(){
 	title += "Dome Projector V2\n";
 	sprintf(titleStr, "%s", title.c_str());
     string credit;
-    credit += "programmed by Kazushi Mukaiyama, deformation data by Paul Bourke, 2014-2016\n";
+    credit += "programmed by Kazushi Mukaiyama, deformation data by Paul Bourke, 2014-2018\n";
     sprintf(creditStr, "%s", credit.c_str());
 	string menu;
 	menu += "+press SPACE to play/stop a video\n";
