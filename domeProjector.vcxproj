@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ItemGroup Label="ProjectConfigurations">
 		<ProjectConfiguration Include="Debug|Win32">
 			<Configuration>Debug</Configuration>
@@ -18,6 +18,11 @@
 			<Platform>x64</Platform>
 		</ProjectConfiguration>
 	</ItemGroup>
+	<PropertyGroup Condition="'$(WindowsTargetPlatformVersion)'==''">
+		<LatestTargetPlatformVersion>$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '10.0'))</LatestTargetPlatformVersion>
+		<WindowsTargetPlatformVersion Condition="'$(WindowsTargetPlatformVersion)' == ''">$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+		<TargetPlatformVersion>$(WindowsTargetPlatformVersion)</TargetPlatformVersion>
+	</PropertyGroup>
 	<PropertyGroup Label="Globals">
 		<ProjectGuid>{7FD42DF7-442E-479A-BA76-D0022F99702A}</ProjectGuid>
 		<Keyword>Win32Proj</Keyword>
@@ -27,65 +32,65 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
 		<ConfigurationType>Application</ConfigurationType>
 		<CharacterSet>Unicode</CharacterSet>
-		<PlatformToolset>v140</PlatformToolset>
+		<PlatformToolset>v141</PlatformToolset>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
 		<ConfigurationType>Application</ConfigurationType>
 		<CharacterSet>Unicode</CharacterSet>
-		<PlatformToolset>v140</PlatformToolset>
+		<PlatformToolset>v141</PlatformToolset>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
 		<ConfigurationType>Application</ConfigurationType>
 		<CharacterSet>Unicode</CharacterSet>
 		<WholeProgramOptimization>true</WholeProgramOptimization>
-		<PlatformToolset>v140</PlatformToolset>
+		<PlatformToolset>v141</PlatformToolset>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
 		<ConfigurationType>Application</ConfigurationType>
 		<CharacterSet>Unicode</CharacterSet>
 		<WholeProgramOptimization>true</WholeProgramOptimization>
-		<PlatformToolset>v140</PlatformToolset>
+		<PlatformToolset>v141</PlatformToolset>
 	</PropertyGroup>
 	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
 	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
 		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="../../../Desktop/of_v0.9.8_vs_release/libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
+		<Import Project="../../../../Desktop/of_v0.10.1_vs2017_release/libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
 	</ImportGroup>
 	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
 		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="../../../Desktop/of_v0.9.8_vs_release/libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
+		<Import Project="../../../../Desktop/of_v0.10.1_vs2017_release/libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
 	</ImportGroup>
 	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
 		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="../../../Desktop/of_v0.9.8_vs_release/libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
+		<Import Project="../../../../Desktop/of_v0.10.1_vs2017_release/libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
 	</ImportGroup>
 	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
 		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-		<Import Project="../../../Desktop/of_v0.9.8_vs_release/libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
+		<Import Project="../../../../Desktop/of_v0.10.1_vs2017_release/libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
 	</ImportGroup>
 	<PropertyGroup Label="UserMacros" />
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
 		<OutDir>bin\</OutDir>
-		<IntDir>obj\$(Configuration)\</IntDir>
+		<IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
 		<TargetName>$(ProjectName)_debug</TargetName>
 		<LinkIncremental>true</LinkIncremental>
 		<GenerateManifest>true</GenerateManifest>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
 		<OutDir>bin\</OutDir>
-		<IntDir>obj\$(Configuration)\</IntDir>
+		<IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
 		<TargetName>$(ProjectName)_debug</TargetName>
 		<LinkIncremental>true</LinkIncremental>
 		<GenerateManifest>true</GenerateManifest>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
 		<OutDir>bin\</OutDir>
-		<IntDir>obj\$(Configuration)\</IntDir>
+		<IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
 		<LinkIncremental>false</LinkIncremental>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
 		<OutDir>bin\</OutDir>
-		<IntDir>obj\$(Configuration)\</IntDir>
+		<IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
 		<LinkIncremental>false</LinkIncremental>
 	</PropertyGroup>
 	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -95,15 +100,16 @@
 			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\contrib;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\detail;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\legacy;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ml;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\nonfree;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\superres;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\emscripten;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\license;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\include;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs\Win32;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs\x64;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\hal;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\autogenerated;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudalegacy;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\functional;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\functional\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgcodecs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ml;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\shape;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\superres;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videoio;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\viz;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\license;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src</AdditionalIncludeDirectories>
 			<CompileAs>CompileAsCpp</CompileAs>
+			<ObjectFileName>$(IntDir)</ObjectFileName>
 		</ClCompile>
 		<Link>
 			<GenerateDebugInformation>true</GenerateDebugInformation>
 			<SubSystem>Console</SubSystem>
 			<RandomizedBaseAddress>false</RandomizedBaseAddress>
-			<AdditionalDependencies>%(AdditionalDependencies);opencv_calib3d249d.lib;opencv_contrib249d.lib;opencv_core249d.lib;opencv_features2d249d.lib;opencv_flann249d.lib;opencv_gpu249d.lib;opencv_highgui249d.lib;opencv_imgproc249d.lib;opencv_legacy249d.lib;opencv_ml249d.lib;opencv_nonfree249d.lib;opencv_objdetect249d.lib;opencv_photo249d.lib;opencv_stitching249d.lib;opencv_superres249d.lib;opencv_ts249d.lib;opencv_video249d.lib;opencv_videostab249d.lib;zlibd.lib</AdditionalDependencies>
-			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug</AdditionalLibraryDirectories>
+			<AdditionalDependencies>%(AdditionalDependencies);ippicvmt.lib;libwebpd.lib;opencv_calib3d310d.lib;opencv_core310d.lib;opencv_features2d310d.lib;opencv_flann310d.lib;opencv_highgui310d.lib;opencv_imgcodecs310d.lib;opencv_imgproc310d.lib;opencv_ml310d.lib;opencv_objdetect310d.lib;opencv_photo310d.lib;opencv_shape310d.lib;opencv_stitching310d.lib;opencv_superres310d.lib;opencv_video310d.lib;opencv_videoio310d.lib;opencv_videostab310d.lib;zlibd.lib</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs\Win32;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug</AdditionalLibraryDirectories>
 		</Link>
 		<PostBuildEvent />
 	</ItemDefinitionGroup>
@@ -114,16 +120,17 @@
 			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\contrib;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\detail;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\legacy;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ml;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\nonfree;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\superres;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\emscripten;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\license;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\include;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs\Win32;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs\x64;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\hal;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\autogenerated;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudalegacy;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\functional;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\functional\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgcodecs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ml;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\shape;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\superres;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videoio;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\viz;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\license;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src</AdditionalIncludeDirectories>
 			<CompileAs>CompileAsCpp</CompileAs>
 			<MultiProcessorCompilation>true</MultiProcessorCompilation>
+			<ObjectFileName>$(IntDir)</ObjectFileName>
 		</ClCompile>
 		<Link>
 			<GenerateDebugInformation>true</GenerateDebugInformation>
 			<SubSystem>Console</SubSystem>
 			<RandomizedBaseAddress>false</RandomizedBaseAddress>
-			<AdditionalDependencies>%(AdditionalDependencies);opencv_calib3d249d.lib;opencv_contrib249d.lib;opencv_core249d.lib;opencv_features2d249d.lib;opencv_flann249d.lib;opencv_gpu249d.lib;opencv_highgui249d.lib;opencv_imgproc249d.lib;opencv_legacy249d.lib;opencv_ml249d.lib;opencv_nonfree249d.lib;opencv_objdetect249d.lib;opencv_photo249d.lib;opencv_stitching249d.lib;opencv_superres249d.lib;opencv_ts249d.lib;opencv_video249d.lib;opencv_videostab249d.lib;zlibd.lib</AdditionalDependencies>
-			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug</AdditionalLibraryDirectories>
+			<AdditionalDependencies>%(AdditionalDependencies);ippicvmt.lib;libwebpd.lib;opencv_calib3d310d.lib;opencv_core310d.lib;opencv_features2d310d.lib;opencv_flann310d.lib;opencv_highgui310d.lib;opencv_imgcodecs310d.lib;opencv_imgproc310d.lib;opencv_ml310d.lib;opencv_objdetect310d.lib;opencv_photo310d.lib;opencv_shape310d.lib;opencv_stitching310d.lib;opencv_superres310d.lib;opencv_video310d.lib;opencv_videoio310d.lib;opencv_videostab310d.lib;zlibd.lib</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs\x64;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug</AdditionalLibraryDirectories>
 		</Link>
 		<PostBuildEvent />
 	</ItemDefinitionGroup>
@@ -133,9 +140,10 @@
 			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
 			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\contrib;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\detail;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\legacy;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ml;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\nonfree;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\superres;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\emscripten;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\license;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\include;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs\Win32;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs\x64;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\hal;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\autogenerated;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudalegacy;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\functional;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\functional\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgcodecs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ml;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\shape;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\superres;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videoio;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\viz;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\license;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src</AdditionalIncludeDirectories>
 			<CompileAs>CompileAsCpp</CompileAs>
 			<MultiProcessorCompilation>true</MultiProcessorCompilation>
+			<ObjectFileName>$(IntDir)</ObjectFileName>
 		</ClCompile>
 		<Link>
 			<IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -144,8 +152,8 @@
 			<OptimizeReferences>true</OptimizeReferences>
 			<EnableCOMDATFolding>true</EnableCOMDATFolding>
 			<RandomizedBaseAddress>false</RandomizedBaseAddress>
-			<AdditionalDependencies>%(AdditionalDependencies);opencv_calib3d249.lib;opencv_contrib249.lib;opencv_core249.lib;opencv_features2d249.lib;opencv_flann249.lib;opencv_gpu249.lib;opencv_highgui249.lib;opencv_imgproc249.lib;opencv_legacy249.lib;opencv_ml249.lib;opencv_nonfree249.lib;opencv_objdetect249.lib;opencv_photo249.lib;opencv_stitching249.lib;opencv_superres249.lib;opencv_ts249.lib;opencv_video249.lib;opencv_videostab249.lib;zlib.lib</AdditionalDependencies>
-			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release</AdditionalLibraryDirectories>
+			<AdditionalDependencies>%(AdditionalDependencies);ippicvmt.lib;libwebp.lib;opencv_calib3d310.lib;opencv_core310.lib;opencv_features2d310.lib;opencv_flann310.lib;opencv_highgui310.lib;opencv_imgcodecs310.lib;opencv_imgproc310.lib;opencv_ml310.lib;opencv_objdetect310.lib;opencv_photo310.lib;opencv_shape310.lib;opencv_stitching310.lib;opencv_superres310.lib;opencv_video310.lib;opencv_videoio310.lib;opencv_videostab310.lib;zlib.lib</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs\Win32;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release</AdditionalLibraryDirectories>
 		</Link>
 		<PostBuildEvent />
 	</ItemDefinitionGroup>
@@ -155,8 +163,9 @@
 			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
 			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\contrib;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\detail;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\legacy;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ml;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\nonfree;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\superres;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\emscripten;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\license;..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\include;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs\Win32;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs\x64;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\hal;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\autogenerated;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudalegacy;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\functional;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\functional\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgcodecs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ml;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\shape;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\superres;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videoio;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\viz;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Debug;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\Win32\Release;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Debug;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\license;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src</AdditionalIncludeDirectories>
 			<CompileAs>CompileAsCpp</CompileAs>
+			<ObjectFileName>$(IntDir)</ObjectFileName>
 		</ClCompile>
 		<Link>
 			<IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -165,8 +174,8 @@
 			<OptimizeReferences>true</OptimizeReferences>
 			<EnableCOMDATFolding>true</EnableCOMDATFolding>
 			<RandomizedBaseAddress>false</RandomizedBaseAddress>
-			<AdditionalDependencies>%(AdditionalDependencies);opencv_calib3d249.lib;opencv_contrib249.lib;opencv_core249.lib;opencv_features2d249.lib;opencv_flann249.lib;opencv_gpu249.lib;opencv_highgui249.lib;opencv_imgproc249.lib;opencv_legacy249.lib;opencv_ml249.lib;opencv_nonfree249.lib;opencv_objdetect249.lib;opencv_photo249.lib;opencv_stitching249.lib;opencv_superres249.lib;opencv_ts249.lib;opencv_video249.lib;opencv_videostab249.lib;zlib.lib</AdditionalDependencies>
-			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release</AdditionalLibraryDirectories>
+			<AdditionalDependencies>%(AdditionalDependencies);ippicvmt.lib;libwebp.lib;opencv_calib3d310.lib;opencv_core310.lib;opencv_features2d310.lib;opencv_flann310.lib;opencv_highgui310.lib;opencv_imgcodecs310.lib;opencv_imgproc310.lib;opencv_ml310.lib;opencv_objdetect310.lib;opencv_photo310.lib;opencv_shape310.lib;opencv_stitching310.lib;opencv_superres310.lib;opencv_video310.lib;opencv_videoio310.lib;opencv_videostab310.lib;zlib.lib</AdditionalDependencies>
+			<AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\lib\vs\x64;..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\lib\vs\x64\Release</AdditionalLibraryDirectories>
 		</Link>
 		<PostBuildEvent />
 	</ItemDefinitionGroup>
@@ -174,203 +183,378 @@
 		<ClCompile Include="src\main.cpp" />
 		<ClCompile Include="src\ofApp.cpp" />
 		<ClCompile Include="src\DistortionImage.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxBaseGui.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxButton.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxGuiGroup.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxLabel.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxPanel.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxSlider.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxSliderGroup.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxToggle.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvColorImage.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvContourFinder.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvFloatImage.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvGrayscaleImage.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvHaarFinder.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvImage.cpp" />
-		<ClCompile Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvShortImage.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxBaseGui.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxButton.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxColorPicker.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxGuiGroup.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxInputField.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxLabel.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxPanel.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxSlider.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxSliderGroup.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxToggle.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvColorImage.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvContourFinder.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvFloatImage.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvGrayscaleImage.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvHaarFinder.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvImage.cpp" />
+		<ClCompile Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvShortImage.cpp" />
 	</ItemGroup>
 	<ItemGroup>
 		<ClInclude Include="src\ofApp.h" />
 		<ClInclude Include="src\DistortionImage.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxBaseGui.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxButton.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxGui.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxGuiGroup.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxLabel.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxPanel.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxSlider.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxSliderGroup.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxGui\src\ofxToggle.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvBlob.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvColorImage.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvConstants.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvContourFinder.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvFloatImage.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvGrayscaleImage.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvHaarFinder.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvImage.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvShortImage.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxOpenCv.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv\cv.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv\cv.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv\cvaux.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv\cvaux.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv\cvwimage.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv\cxcore.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv\cxcore.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv\cxeigen.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv\cxmisc.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv\highgui.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv\ml.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d\calib3d.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\contrib\contrib.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\contrib\detection_based_tracker.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\contrib\hybridtracker.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\contrib\openfabmap.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\contrib\retina.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\affine.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\core.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\core_c.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda_devptrs.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\devmem2d.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\eigen.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\gpumat.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\internal.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\mat.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opengl_interop.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opengl_interop_deprecated.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\operations.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\types_c.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\version.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\wimage.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d\features2d.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\allocator.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\all_indices.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\any.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\autotuned_index.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\composite_index.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\config.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\defines.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\dist.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\dummy.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\dynamic_bitset.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\flann.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\flann_base.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\general.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\ground_truth.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\hdf5.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\heap.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\hierarchical_clustering_index.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\index_testing.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\kdtree_index.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\kdtree_single_index.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\kmeans_index.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\linear_index.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\logger.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\lsh_index.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\lsh_table.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\matrix.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\miniflann.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\nn_index.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\object_factory.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\params.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\random.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\result_set.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\sampling.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\saving.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\simplex_downhill.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\timer.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\block.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\border_interpolate.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\color.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\common.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\datamov_utils.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\detail\color_detail.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\detail\reduce.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\detail\reduce_key_val.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\detail\transform_detail.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\detail\type_traits_detail.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\detail\vec_distance_detail.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\dynamic_smem.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\emulation.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\filters.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\funcattrib.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\functional.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\limits.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\reduce.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\saturate_cast.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\scan.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\simd_functions.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\static_check.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\transform.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\type_traits.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\utility.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\vec_distance.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\vec_math.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\vec_traits.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\warp.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\warp_reduce.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\device\warp_shuffle.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\devmem2d.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\gpu.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\gpumat.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\gpu\stream_accessor.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui\cap_ios.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui\highgui.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui\highgui_c.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui\ios.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\imgproc.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\imgproc_c.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\types_c.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\legacy\blobtrack.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\legacy\compat.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\legacy\legacy.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\legacy\streams.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ml\ml.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\nonfree\features2d.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\nonfree\gpu.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\nonfree\nonfree.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\nonfree\ocl.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect\objdetect.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\opencv.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\opencv_modules.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo\photo.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo\photo_c.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\autocalib.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\blenders.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\camera.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\exposure_compensate.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\matchers.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\motion_estimators.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\seam_finders.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\util.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\util_inl.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\warpers.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\warpers_inl.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\stitcher.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\warpers.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\superres\optical_flow.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\superres\superres.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts\gpu_perf.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts\gpu_test.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts\ts.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts\ts_gtest.h" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts\ts_perf.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video\background_segm.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video\tracking.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video\video.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\deblurring.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\fast_marching.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\fast_marching_inl.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\frame_source.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\global_motion.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\inpainting.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\log.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\motion_stabilizing.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\optical_flow.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\stabilizer.hpp" />
-		<ClInclude Include="..\..\..\Desktop\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\videostab.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxBaseGui.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxButton.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxColorPicker.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxGui.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxGuiGroup.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxInputField.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxLabel.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxPanel.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxSlider.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxSliderGroup.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxGui\src\ofxToggle.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvBlob.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvColorImage.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvConstants.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvContourFinder.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvFloatImage.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvGrayscaleImage.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvHaarFinder.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvImage.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxCvShortImage.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\src\ofxOpenCv.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\include\ipp.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\include\ippicv_base.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\include\ippicv_defs.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\include\ippicv_redefs.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\include\ippicv_types.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\ippicv\include\ippversion.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv\cv.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv\cv.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv\cvaux.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv\cvaux.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv\cvwimage.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv\cxcore.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv\cxcore.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv\cxeigen.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv\cxmisc.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv\highgui.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv\ml.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d\calib3d.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d\calib3d_c.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\calib3d.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\affine.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\base.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\bufferpool.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\core.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\core_c.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\block.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\border_interpolate.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\color.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\common.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\datamov_utils.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\detail\color_detail.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\detail\reduce.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\detail\reduce_key_val.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\detail\transform_detail.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\detail\type_traits_detail.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\detail\vec_distance_detail.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\dynamic_smem.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\emulation.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\filters.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\funcattrib.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\functional.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\limits.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\reduce.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\saturate_cast.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\scan.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\simd_functions.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\transform.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\type_traits.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\utility.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\vec_distance.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\vec_math.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\vec_traits.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\warp.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\warp_reduce.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda\warp_shuffle.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda.inl.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda_stream_accessor.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cuda_types.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cvdef.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cvstd.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\cvstd.inl.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\directx.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\eigen.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\fast_math.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\hal\hal.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\hal\interface.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\hal\intrin.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\hal\intrin_cpp.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\hal\intrin_neon.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\hal\intrin_sse.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\ippasync.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\mat.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\mat.inl.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\matx.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\neon_utils.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\ocl.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\ocl_genbase.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\ocl_defs.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\opencl_svm.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\autogenerated\opencl_clamdblas.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\autogenerated\opencl_clamdfft.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\autogenerated\opencl_core.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\autogenerated\opencl_core_wrappers.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\autogenerated\opencl_gl.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\autogenerated\opencl_gl_wrappers.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\opencl_clamdblas.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\opencl_clamdfft.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\opencl_core.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\opencl_core_wrappers.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\opencl_gl.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\opencl_gl_wrappers.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\opencl_svm_20.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\opencl_svm_definitions.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opencl\runtime\opencl_svm_hsa_extension.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\opengl.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\operations.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\optim.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\persistence.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\private.cuda.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\private.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\ptr.inl.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\saturate.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\sse_utils.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\traits.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\types.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\types_c.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\utility.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\va_intel.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\version.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core\wimage.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\core.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudaarithm.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudabgsegm.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudacodec.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudafeatures2d.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudafilters.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudaimgproc.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudalegacy\NCV.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudalegacy\NCVBroxOpticalFlow.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudalegacy\NCVHaarObjectDetection.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudalegacy\NCVPyramid.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudalegacy\NPP_staging.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudalegacy\private.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudalegacy.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudaobjdetect.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudaoptflow.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudastereo.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudawarping.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block\block.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block\detail\reduce.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block\detail\reduce_key_val.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block\dynamic_smem.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block\reduce.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block\scan.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\block\vec_distance.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\common.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr\binary_func.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr\binary_op.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr\color.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr\deriv.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr\expr.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr\per_element_func.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr\reduction.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr\unary_func.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr\unary_op.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\expr\warping.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\functional\color_cvt.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\functional\detail\color_cvt.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\functional\functional.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\functional\tuple_adapter.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\copy.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail\copy.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail\histogram.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail\integral.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail\minmaxloc.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail\pyr_down.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail\pyr_up.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail\reduce.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail\reduce_to_column.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail\reduce_to_row.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail\split_merge.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail\transform.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\detail\transpose.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\histogram.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\integral.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\pyramids.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\reduce.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\reduce_to_vec.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\split_merge.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\transform.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\grid\transpose.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\constant.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\deriv.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\detail\gpumat.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\extrapolation.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\glob.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\gpumat.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\interpolation.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\lut.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\mask.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\remap.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\resize.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\texture.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\traits.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\transform.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\warping.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\ptr2d\zip.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\atomic.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\detail\tuple.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\detail\type_traits.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\limits.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\saturate_cast.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\simd_functions.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\tuple.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\type_traits.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\vec_math.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\util\vec_traits.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp\detail\reduce.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp\detail\reduce_key_val.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp\reduce.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp\scan.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp\shuffle.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev\warp\warp.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\cudev.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d\features2d.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\features2d.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\allocator.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\all_indices.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\any.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\autotuned_index.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\composite_index.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\config.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\defines.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\dist.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\dummy.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\dynamic_bitset.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\flann.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\flann_base.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\general.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\ground_truth.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\hdf5.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\heap.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\hierarchical_clustering_index.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\index_testing.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\kdtree_index.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\kdtree_single_index.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\kmeans_index.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\linear_index.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\logger.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\lsh_index.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\lsh_table.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\matrix.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\miniflann.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\nn_index.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\object_factory.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\params.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\random.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\result_set.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\sampling.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\saving.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\simplex_downhill.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann\timer.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\flann.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui\highgui.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui\highgui_c.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui\highgui_winrt.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\highgui.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgcodecs\imgcodecs.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgcodecs\imgcodecs_c.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgcodecs\ios.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgcodecs.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\detail\distortion_model.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\imgproc.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\imgproc_c.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc\types_c.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\imgproc.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ml\ml.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ml.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect\detection_based_tracker.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect\objdetect.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect\objdetect_c.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\objdetect.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\opencv.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo\cuda.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo\photo.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo\photo_c.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\photo.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\shape\emdL1.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\shape\hist_cost.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\shape\shape.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\shape\shape_distance.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\shape\shape_transformer.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\shape.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\autocalib.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\blenders.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\camera.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\exposure_compensate.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\matchers.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\motion_estimators.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\seam_finders.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\timelapsers.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\util.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\util_inl.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\warpers.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\detail\warpers_inl.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching\warpers.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\stitching.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\superres\optical_flow.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\superres.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts\cuda_perf.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts\cuda_test.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts\ocl_perf.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts\ocl_test.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts\ts_ext.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts\ts_gtest.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts\ts_perf.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\ts.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video\background_segm.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video\tracking.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video\tracking_c.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video\video.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\video.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videoio\cap_ios.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videoio\cap_winrt.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videoio\videoio.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videoio\videoio_c.h" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videoio.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\deblurring.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\fast_marching.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\fast_marching_inl.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\frame_source.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\global_motion.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\inpainting.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\log.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\motion_core.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\motion_stabilizing.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\optical_flow.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\outlier_rejection.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\ring_buffer.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\stabilizer.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\wobble_suppression.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\viz\types.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\viz\viz3d.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\viz\vizcore.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\viz\widgets.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\viz\widget_accessor.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\viz.hpp" />
+		<ClInclude Include="..\..\..\..\Desktop\of_v0.10.1_vs2017_release\addons\ofxOpenCv\libs\opencv\include\opencv2\world.hpp" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

@@ -73,6 +73,7 @@ void ofApp::setup(){
     video.load("planetarium_autumn.mov");
     video.setLoopState(OF_LOOP_NONE);
     video.stop();
+	video.stop(); // for the bug of oF v0.10.1 windows
     image.allocate(video.getWidth(), video.getHeight());
     mask.allocate(projector.width, projector.height, OF_IMAGE_COLOR_ALPHA);
     mask.load("mask.png");
@@ -151,11 +152,13 @@ void ofApp::update(){
             image.allocate(video.getWidth(), video.getHeight());
             duration = video.getPosition();
             video.setPosition(duration);
-            video.play();
-        } else {
+			video.play();
+			video.play(); // for the bug of oF v0.10.1 windows
+		} else {
             video.setPaused(true);
             video.stop();
-            duration = video.getPosition();
+			video.stop(); // for the bug of oF v0.10.1 windows
+			duration = video.getPosition();
         }
     }
 
@@ -419,10 +422,12 @@ void ofApp::keyPressed(int key){
         switch(key){
             case ' ':
                 if(video.isPlaying()){
-                    video.stop();
-                } else {
-                    video.play();
-                }
+					video.stop();
+					video.stop(); // for the bug of oF v0.10.1 windows
+				} else {
+					video.play();
+					video.play(); // for the bug of oF v0.10.1 windows
+				}
                 break;
             case OF_KEY_RETURN:
                 if(!video.isPlaying()){
@@ -592,9 +597,11 @@ void ofApp::playListClearPressed(){
 void ofApp::playButtonPressed(){
     if(video.isPlaying()){
         video.stop();
-    } else {
+		video.stop(); // for the bug of oF v0.10.1 windows
+	} else {
         video.play();
-    }
+		video.play(); // for the bug of oF v0.10.1 windows
+	}
 }
 
 void ofApp::deviceValueChanged(bool & value){
